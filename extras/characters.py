@@ -1,7 +1,6 @@
 from __future__ import print_function
 from .items import newbSword
 from random import randint as rnd
-from time import sleep
 
 class Player:
     def __init__(self):
@@ -22,7 +21,6 @@ class Player:
     def reward(self):
         xpreward = self.level * 8 + self.attack + self.defense
         hero.xp += xpreward
-        print("\nCongratulations! you have defeated the monster and gained %d experience." %xpreward)
         if hero.xp >= hero.max_xp:
             self.level += 1
             self.attack *= 2
@@ -39,7 +37,7 @@ class Player:
         enemy.hp -= damage
         if enemy.hp <= 0:
             print("Congratulations! You have killed the enemy!")
-        if rand_bonus <= 3 and enemy.hp >= 0:
+        if rand_bonus <= 3 and enemy.hp - damage >= 0:
             print("You have struck the enemy for %d hp." % damage)
         else:
             print("Wow! You have dealt a critical strike for %d hp!" % damage)
