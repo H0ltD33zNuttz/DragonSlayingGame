@@ -61,7 +61,7 @@ def battleDragon():
 
         t.sleep(2)
         # Dragon attacks if it is not dead and you did not choose to view the stats page or surrender the fight
-        if not choice == '3' and introDrag:
+        if not choice == '3' and introDrag.hp > 0:
             dragonDamage = randint(1,2)
             hero.hp -= dragonDamage
             print("\n\n\nThe dragon has attacked you for %d hp\n%s's current hp: %d\n"
@@ -69,7 +69,6 @@ def battleDragon():
 
     # Winning or losing message
     if introDrag.hp <= 0:
-        print("Congratulations! you have beaten the monster")
         hero.reward()
     else:
         print("Sorry you have been killed please try again")
@@ -84,17 +83,13 @@ while True:
     choice = raw_input(mainMenu)
     # Battle
     if choice == '1':
-        # Shop
         battleDragon()
+        # Shop
     elif choice == '2':
-        print("Hello World")
+        print("Hello World") # Not yet Implemented
+        # Player Stats
     elif choice == '3':
         getPlayerStats()
         t.sleep(5)
     elif choice == 4:
         print("Hello World")
-
-
-
-
-

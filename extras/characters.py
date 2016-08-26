@@ -21,6 +21,7 @@ class Player:
     def reward(self):
         xpreward = self.level * 8 + self.attack + self.defense
         hero.xp += xpreward
+        print("You have gained %d experience" % xpreward)
         if hero.xp >= hero.max_xp:
             self.level += 1
             self.attack *= 2
@@ -28,24 +29,22 @@ class Player:
             self.hp *= 1.5
             self.max_xp *= 1.5
             self.xp = 0
-            print("Congratulations! You are now level %d" % self.level)
+            print("You are now level %d" % self.level)
 
             hero.max_xp += self.level * 2 + 18
+
     def attack_enemy(self, enemy):
         rand_bonus = rnd(1,4)
         damage = hero.attack * newbSword.attack * rand_bonus
         enemy.hp -= damage
         if enemy.hp <= 0:
             print("Congratulations! You have killed the enemy!")
-        if rand_bonus <= 3 and enemy.hp - damage >= 0:
-            print("You have struck the enemy for %d hp." % damage)
-        else:
-            print("Wow! You have dealt a critical strike for %d hp!" % damage)
-        print("Leaving them with %d hp" % enemy.hp)
-
-        if enemy.hp <= 0:
             hero.reward()
-
+        elif enemy.hp >= 0:
+            print("You have struck the enemy for %d hp." % damage)
+            print("Leaving them with %d hp" % enemy.hp)
+        else:
+            return None
 
 # Dragon Stats
 class Dragon:
